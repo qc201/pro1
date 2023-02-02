@@ -1,15 +1,15 @@
 package deque;
 
-public class LinkedListDeque<MyDataType> {
+public class LinkedListDeque<T> {
     private MyNode dummy;
     private int size;
 
     // a single node item in the linked list
     public class MyNode {
-        public MyDataType val;
+        public T val;
         public MyNode prev;
         public MyNode next;
-        public MyNode(MyDataType x, MyNode prevNode, MyNode nextNode) {
+        public MyNode(T x, MyNode prevNode, MyNode nextNode) {
             val = x;
             prev = prevNode;
             next = nextNode;
@@ -18,7 +18,7 @@ public class LinkedListDeque<MyDataType> {
     // construct a new empty linked list with dummy head
     // dummy.prev = tail
     // dummy.next = head
-    public LinkedListDeque(MyDataType x) {
+    public LinkedListDeque(T x) {
         dummy = new MyNode(x, null, null);
         MyNode newNode = new MyNode(x, dummy, dummy);
         dummy.next = newNode;
@@ -39,12 +39,12 @@ public class LinkedListDeque<MyDataType> {
         dummy.next = dummy;
         size = 0;
         for (int i=0; i < other.size; i++) {
-            addLast((MyDataType) other.get(i));
+            addLast((T) other.get(i));
         }
     }
 
 
-    public void addLast(MyDataType n) {
+    public void addLast(T n) {
         MyNode prevNode = dummy.prev;
         MyNode newNode = new MyNode(n, prevNode, dummy);
         prevNode.next = newNode;
@@ -52,7 +52,7 @@ public class LinkedListDeque<MyDataType> {
         size += 1;
     }
 
-    public void addFirst(MyDataType n) {
+    public void addFirst(T n) {
         MyNode nextNode = dummy.next;
         MyNode newNode = new MyNode(n, dummy, nextNode);
         dummy.next = newNode;
@@ -68,7 +68,7 @@ public class LinkedListDeque<MyDataType> {
         return size == 0;
     }
 
-    public MyDataType removeFirst() {
+    public T removeFirst() {
         if (size == 0) {
             return null;
         }
@@ -79,7 +79,7 @@ public class LinkedListDeque<MyDataType> {
         return curNode.val;
     }
 
-    public MyDataType removeLast() {
+    public T removeLast() {
         if (size == 0) {
             return null;
         }
@@ -90,7 +90,7 @@ public class LinkedListDeque<MyDataType> {
         return lastNode.val;
     }
 
-    public MyDataType get(int index) {
+    public T get(int index) {
         MyNode pointer = dummy.next;
         int counter = 0;
         while (pointer != dummy && counter < index) {
@@ -104,7 +104,7 @@ public class LinkedListDeque<MyDataType> {
         }
     }
 
-    public MyDataType getRecursive(int index) {
+    public T getRecursive(int index) {
         return get(index);
     }
 
